@@ -76,7 +76,6 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   .nav.open .links a{padding:12px 14px}
   .nav.open .social{display:flex;justify-content:flex-start;align-items:center;gap:10px;padding:12px 4px 4px;border-top:1px solid var(--line)}
   .social img{height:36px !important;width:36px !important;margin-top:0 !important}
-
   section{padding:32px 18px}
   #home{padding-top:28px;padding-bottom:28px}
   #home::before,#home::after{display:none}
@@ -86,20 +85,19 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   .disclaimer{display:block;font-size:.72rem;font-weight:600;line-height:1.45;letter-spacing:.01em;color:color-mix(in srgb,var(--muted) 78%,var(--text));text-transform:none}
   .btn{display:flex;justify-content:center;width:100%;box-sizing:border-box;margin-top:18px;padding:14px 22px}
   .band{height:clamp(180px,38vh,280px)}
-
-  .book-stage{padding:16px 0 12px}
-  .book{height:auto;width:100%;max-width:none;aspect-ratio:var(--book-ratio)}
+  .book-stage{--book-ratio:1.37;padding:16px 0 12px}
+  .book{height:unset;width:100%;max-width:none;aspect-ratio:var(--book-ratio)}
+  .face img{object-fit:contain}
   .book-controls{gap:10px;padding:0 4px}
   .book-controls button{width:48px;height:48px}
   .book-label{min-width:0;flex:1;font-size:.9rem}
-
   .section-tag{font-size:.72rem;margin-bottom:8px}
   .location-details:hover p{transform:none}
   .direction-btn{display:flex;justify-content:center;width:100%;box-sizing:border-box;padding:14px 18px;margin:14px 0 18px}
   .map-container{border-radius:12px}
   .map-container iframe{height:240px !important}
-
   .reveal{transform:translateY(20px)}
+} 
 }
 
 /* Sections */
