@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cafe La Vie Douce</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F8F0E9; --surface:#F8F0E9; --text:#4d6ba2; --muted:#262626; --accent:#94bde6; --accent-deep:#7A5C3B; --accent-soft:#e7d2ed; --accent-ink:#000000; --line:#E2D2C0;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:calc(72px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--text);font-family:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.6}
+
+@keyframes fade-down {
+  from{opacity:0;transform:translateY(-16px)}
+  to{opacity:1;transform:none}
+}
+@keyframes fade-up {
+  from{opacity:0;transform:translateY(28px)}
+  to{opacity:1;transform:none}
+}
+@keyframes pop-in {
+  from{opacity:0;transform:scale(.72) rotate(-8deg)}
+  to{opacity:1;transform:none}
+}
+@keyframes steam {
+  0%{opacity:.15;transform:translateY(0) scaleX(1)}
+  50%{opacity:.45;transform:translateY(-28px) scaleX(1.15)}
+  100%{opacity:0;transform:translateY(-56px) scaleX(.85)}
+}
+@keyframes kenburns {
+  from{transform:scale(1.08) translateY(0)}
+  to{transform:scale(1) translateY(-2%)}
+}
+@keyframes shine {
+  from{transform:translateX(-120%) skewX(-18deg)}
+  to{transform:translateX(220%) skewX(-18deg)}
+}
+@keyframes float-soft {
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-6px)}
+}
+
+/* Navbar */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--surface) 86%,transparent);border-bottom:1px solid var(--line);backdrop-filter:blur(12px);animation:fade-down .7s ease both}
+.nav-inner{max-width:1100px;margin:0 auto;padding:0 20px;height:64px;display:flex;align-items:center;gap:24px}
+.brand{font-weight:800;font-size:1.25rem;color:var(--text);text-decoration:none;letter-spacing:-.02em;transition:letter-spacing .3s ease}
+.brand:hover{letter-spacing:.01em}
+.logo{border-radius:100%;width:40px;height:40px;animation:pop-in .8s cubic-bezier(.2,1.4,.3,1) both;transition:transform .35s ease}
+.logo:hover{transform:rotate(-8deg) scale(1.08)}
+.links{display:flex;gap:4px;list-style:none;margin:0 auto 0 16px;padding:0}
+.links a{display:block;padding:8px 14px;border-radius:999px;color:var(--muted);text-decoration:none;font-weight:600;transition:background .25s,color .25s,transform .25s}
+.links a:hover{color:var(--text);background:var(--accent-soft);transform:translateY(-1px)}
+.links a.active{color:var(--accent-ink);background:var(--accent)}
+.social{display:flex;gap:6px}
+.social a{width:40px;height:40px;display:grid;place-items:center;border-radius:50%;color:var(--muted);transition:color .2s,background .2s,transform .25s}
+.social a:hover{color:var(--accent-deep);background:var(--accent-soft);transform:translateY(-3px) scale(1.08)}
+.social svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.menu-btn{display:none;margin-left:auto;width:40px;height:40px;border:0;border-radius:8px;background:transparent;color:var(--text);cursor:pointer}
+.menu-btn svg{width:24px;height:24px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+/* Mobile */
+@media (max-width:760px){
+  .menu-btn{display:grid;place-items:center}
+  .nav-inner{flex-wrap:wrap;height:auto;min-height:64px;padding-top:12px;padding-bottom:12px}
+  .brand{line-height:40px}
+  .links,.social{display:none;width:100%;margin:0}
+  .nav.open .links{display:flex;flex-direction:column;gap:2px}
+  .nav.open .social{display:flex;justify-content:flex-start;padding-top:8px;border-top:1px solid var(--line)}
+}
+
+/* Sections */
+section{max-width:1100px;margin:0 auto;padding:48px 20px}
+#home{position:relative;overflow:hidden}
+#home::before,#home::after{
+  content:"";position:absolute;left:72px;width:10px;height:42px;border-radius:999px;
+  background:linear-gradient(to top,transparent,color-mix(in srgb,var(--accent) 55%,white));
+  filter:blur(1px);pointer-events:none;animation:steam 3.6s ease-in-out infinite;
+}
+#home::before{bottom:28px;animation-delay:.2s}
+#home::after{left:92px;bottom:36px;width:7px;height:34px;animation-delay:1.4s;opacity:.7}
+h1{font-size:clamp(2.4rem,7vw,4.5rem);line-height:1.05;letter-spacing:-.03em;margin:0 0 16px;font-weight:800;animation:fade-up .9s cubic-bezier(.2,.7,.2,1) .05s both}
+h2{font-size:clamp(1.8rem,4vw,2.6rem);margin:0 0 12px;letter-spacing:-.02em}
+#home p{animation:fade-up .9s cubic-bezier(.2,.7,.2,1) .18s both}
+p{max-width:60ch;color:var(--muted);font-size:1.1rem}
+.btn{position:relative;overflow:hidden;display:inline-block;margin-top:12px;padding:12px 22px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font-weight:600;text-decoration:none;transition:transform .25s,box-shadow .25s;animation:fade-up .9s cubic-bezier(.2,.7,.2,1) .32s both}
+.btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px color-mix(in srgb,var(--accent) 45%,transparent)}
+.btn::after{content:"";position:absolute;inset:-20% auto -20% 0;width:40%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.45),transparent);animation:shine 2.8s ease-in-out 1.2s infinite}
+#about,#menu,#location{border-top:1px solid var(--line)}
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+.reveal.is-in{opacity:1;transform:none}
+.section-tag{display:inline-block;margin-bottom:10px;padding:4px 12px;border-radius:999px;background:var(--accent-soft);font-size:.8rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;animation:float-soft 3.5s ease-in-out infinite}
+.location-details p{margin:.2em 0;transition:transform .3s}
+.location-details:hover p{transform:translateX(4px)}
+.direction-btn{display:inline-block;margin:16px 0 24px;padding:10px 18px;border-radius:999px;border:1px solid var(--line);color:var(--text);text-decoration:none;font-weight:600;transition:background .25s,transform .25s}
+.direction-btn:hover{background:var(--accent-soft);transform:translateY(-2px)}
+.map-container{border-radius:16px;overflow:hidden;box-shadow:0 16px 40px rgba(60,40,20,.12);transform:translateY(12px);opacity:0;transition:opacity .9s ease,transform .9s ease}
+.map-container.is-in{opacity:1;transform:none}
+
+/* Full-width image band between Home and About */
+.band{display:block;width:100%;height:clamp(260px,55vh,600px);object-fit:cover;animation:kenburns 18s ease-out both}
+
+/* Menu flipbook */
+.book-stage{--book-ratio:1.5;display:flex;justify-content:center;padding:32px 0 24px;overflow:hidden;outline-offset:4px}
+.book{position:relative;height:700px;perspective:2200px;width:min(100%,1000px,calc((100vh - 180px)*var(--book-ratio)));aspect-ratio:var(--book-ratio);transition:transform .9s cubic-bezier(.645,.045,.355,1)}
+.book[data-state="0"]{transform:translateX(-25%)}
+.book.at-end{transform:translateX(25%)}
+.leaf{position:absolute;top:0;left:50%;width:50%;height:100%;transform-origin:left center;transform-style:preserve-3d;transition:transform .9s cubic-bezier(.645,.045,.355,1);cursor:pointer}
+.leaf.flipped{transform:rotateY(-180deg)}
+.book[data-state="0"] .leaf:first-child:hover{transform:rotateY(-10deg)}
+.face{position:absolute;inset:0;overflow:hidden;background:#fffdf9;display:grid;place-items:center;font-weight:600;color:var(--muted);backface-visibility:hidden;-webkit-backface-visibility:hidden;box-shadow:0 8px 24px rgba(60,40,20,.18)}
+.face img{width:100%;height:100%;object-fit:contain;display:block;user-select:none}
+.face::after{content:"";position:absolute;inset:0;pointer-events:none}
+.front{border-radius:0 8px 8px 0}
+.front::after{background:linear-gradient(to right,rgba(0,0,0,.22),rgba(0,0,0,0) 12%)}
+.back{transform:rotateY(180deg);border-radius:8px 0 0 8px}
+.back::after{background:linear-gradient(to left,rgba(0,0,0,.22),rgba(0,0,0,0) 12%)}
+.book-controls{display:flex;align-items:center;justify-content:center;gap:16px}
+.book-controls button{width:44px;height:44px;display:grid;place-items:center;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--text);cursor:pointer;transition:background .2s,transform .2s}
+.book-controls button:hover:not(:disabled){background:var(--accent-soft);transform:scale(1.08)}
+.book-controls button:disabled{opacity:.35;cursor:default}
+.book-controls svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.book-label{min-width:150px;text-align:center;color:var(--muted);font-weight:600}
+@media (prefers-reduced-motion:reduce){
+  .book,.leaf{transition-duration:.01s}
+  .nav,.logo,h1,#home p,.btn,.band,#home::before,#home::after,.btn::after,.section-tag{animation:none}
+  .reveal,.map-container{opacity:1;transform:none;transition:none}
+}
+
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="nav-inner">
+    <img class="logo" src="logo.png" alt="">
+    <a class="brand" href="#home">Cafe La Vie Douce</a>
+
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+
+    <ul class="links" id="links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#location">Location</a></li>
+    </ul>
+
+    <div class="social">
+      <a href="https://www.instagram.com/laviedouce.gurgaon/" target="_blank" rel="noopener" aria-label="Instagram">
+        <img src="instagram.png" style="height:40px; width:40px;">
+      </a>
+      <a href="https://zomato.onelink.me/xqzv/ymfl6rri" target="_blank" rel="noopener" aria-label="Zomato">
+        <img src="zomato.png" style="height:40px; width:40px;">      </a>
+      <a href="https://www.swiggy.com/menu/862533?source=sharing" target="_blank" rel="noopener" aria-label="Swiggy">
+        <img src="swiggy.png" style="height:50px; width:50px; margin-top:-5px;">      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="home">
+    <h1>Welcome to a Greek Bohemian Paradise!</h1>
+    <p> <b>DISCLAIMER: THIS WEBSITE IS AN INDEPENDENT REDESIGN CONCEPT CREATED FOR PORTFOLIO AND EDUCATIONAL PURPOSES. LA VIE DOUCE'S BRANDING, CONTENT, AND IMAGERY BELONG TO THEIR RESPECTIVE OWNERS. THIS PROJECT IS NOT AFFILIATED WITH, ENDORSED BY, OR COMMISSIONED BY LA VIE DOUCE. </b> <br><br> A European-inspired café and bakery where specialty coffee, artisanal bakes, comforting brunches, and slow conversations come together. Step away from the rush and savor moments crafted with warmth, flavor, and timeless charm.</p>
+    <a class="btn" href="#location">Find us</a>
+  </section>
+
+  <img class="band" src="cafeimagehome.png" alt="Inside Cafe La Vie Douce">
+
+  <section id="about" class="reveal">
+    <h2>About</h2>
+    <p>Inspired by the charm of European cafés, La Vie Douce is a space designed for lingering mornings, afternoon coffee rituals, and memorable evenings. From freshly baked pastries and handcrafted desserts to artisanal coffee, pizzas, pastas, and all-day breakfast, every detail is created to make life feel a little sweeter.</p>
+  </section>
+
+  <section id="menu" class="reveal">
+    <h2>Menu</h2>
+    <p>Tap the book or use the arrows to turn the pages.</p>
+    <div class="book-stage" id="bookStage" tabindex="0" aria-label="Menu book. Use the left and right arrow keys to turn pages.">
+      <div class="book" id="book"></div>
+    </div>
+    <div class="book-controls">
+      <button id="prevPage" aria-label="Previous page"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+      <span class="book-label" id="bookLabel" aria-live="polite"></span>
+      <button id="nextPage" aria-label="Next page"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+    </div>
+  </section>
+
+  <section id="location" class="reveal">
+    <h2>Location</h2>
+        <div class="location-content">
+        <span class="section-tag">Visit Us</span>
+
+        <p>
+            Nestled in the heart of Gurgaon, La Vie Douce offers a warm European-inspired
+            escape where every visit feels like a moment away from the city's rush.
+        </p>
+
+        <div class="location-details">
+            <p>R1G28, M3M 65th Avenue</p>
+            <p>Sector 65, Gurugram, Haryana 122101</p>
+            <p>Open Daily • 9:00 AM – 11:00 PM</p>
+        </div>
+
+        <a href="#" class="direction-btn">Get Directions</a>
+    </div>
+
+    <div class="map-container">
+        <iframe
+            src="https://www.google.com/maps?q=La+Vie+Douce+Cafe+and+Bakery+Gurugram&output=embed"
+            loading="lazy" style="height:500px;width:100%;">
+        </iframe>
+    </div>
+  </section>
+</main>
+
+<script>
+  const nav = document.getElementById('nav');
+  const btn = document.getElementById('menuBtn');
+  const links = [...document.querySelectorAll('.links a')];
+
+  // Mobile menu toggle
+  btn.addEventListener('click', () => {
+    const open = nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open);
+  });
+  links.forEach(a => a.addEventListener('click', () => {
+    nav.classList.remove('open');
+    btn.setAttribute('aria-expanded', false);
+  }));
+
+  // Highlight the link for the section currently in view
+  const sections = links.map(a => document.querySelector(a.getAttribute('href')));
+  function setActive() {
+    const y = window.scrollY + 120;
+    let current = sections[0];
+    sections.forEach(s => { if (s.offsetTop <= y) current = s; });
+    const atBottom = window.innerHeight + window.scrollY >= document.body.offsetHeight - 2;
+    if (atBottom) current = sections[sections.length - 1];
+    links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current.id));
+  }
+  window.addEventListener('scroll', setActive, { passive: true });
+  setActive();
+
+  // ---- Menu flipbook ----
+  // List your images in order: 1st = cover, last = back cover (logo).
+  const MENU_PAGES = [
+    'menu-1.png',  'menu-2.png',  'menu-3.png',  'menu-4.png',
+    'menu-5.png',  'menu-6.png',  'menu-7.png',  'menu-8.png',
+    'menu-9.png',  'menu-10.png', 'menu-11.png', 'menu-12.png'
+  ];
+
+  const book = document.getElementById('book');
+  const stage = document.getElementById('bookStage');
+  const prevBtn = document.getElementById('prevPage');
+  const nextBtn = document.getElementById('nextPage');
+  const bookLabel = document.getElementById('bookLabel');
+  const FLIP_MS = 900;
+  const leafCount = Math.ceil(MENU_PAGES.length / 2);
+  const leaves = [];
+  let state = 0;   // 0 = closed on the cover, leafCount = closed on the back cover
+  let busy = false;
+
+  function makeFace(cls, src, n) {
+    const face = document.createElement('div');
+    face.className = 'face ' + cls;
+    if (src) {
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = 'Menu page ' + n;
+      img.draggable = false;
+      img.onerror = () => { img.remove(); face.append('Page ' + n); };
+      face.append(img);
+    }
+    return face;
+  }
+
+  for (let i = 0; i < leafCount; i++) {
+    const leaf = document.createElement('div');
+    leaf.className = 'leaf';
+    leaf.append(
+      makeFace('front', MENU_PAGES[2 * i], 2 * i + 1),
+      makeFace('back', MENU_PAGES[2 * i + 1], 2 * i + 2)
+    );
+    leaf.addEventListener('click', () => goTo(i < state ? i : i + 1));
+    book.append(leaf);
+    leaves.push(leaf);
+  }
+
+  function renderBook() {
+    leaves.forEach((leaf, i) => {
+      const flipped = i < state;
+      const restingZ = flipped ? i : leafCount - i;
+      if (leaf.classList.contains('flipped') !== flipped) {
+        leaf.style.zIndex = leafCount + 1;                 // stay on top while turning
+        setTimeout(() => { leaf.style.zIndex = restingZ; }, FLIP_MS);
+      } else {
+        leaf.style.zIndex = restingZ;
+      }
+      leaf.classList.toggle('flipped', flipped);
+    });
+    book.dataset.state = state;
+    book.classList.toggle('at-end', state === leafCount);
+    prevBtn.disabled = state === 0;
+    nextBtn.disabled = state === leafCount;
+    bookLabel.textContent = state === 0 ? 'Cover'
+      : state === leafCount ? 'Back cover'
+      : 'Pages ' + (2 * state) + ' – ' + (2 * state + 1);
+  }
+
+  function goTo(n) {
+    n = Math.max(0, Math.min(leafCount, n));
+    if (busy || n === state) return;
+    state = n;
+    busy = true;
+    renderBook();
+    setTimeout(() => { busy = false; }, FLIP_MS * 0.7);
+  }
+
+  prevBtn.addEventListener('click', () => goTo(state - 1));
+  nextBtn.addEventListener('click', () => goTo(state + 1));
+  stage.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') goTo(state + 1);
+    if (e.key === 'ArrowLeft') goTo(state - 1);
+  });
+
+  // Swipe on touch screens
+  let touchX = null, touchY = null;
+  stage.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; touchY = e.touches[0].clientY; }, { passive: true });
+  stage.addEventListener('touchend', e => {
+    if (touchX === null) return;
+    const dx = e.changedTouches[0].clientX - touchX;
+    const dy = e.changedTouches[0].clientY - touchY;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) goTo(state + (dx < 0 ? 1 : -1));
+    touchX = touchY = null;
+  }, { passive: true });
+
+  renderBook();
+
+  const revealEls = document.querySelectorAll('.reveal, .map-container');
+  if ('IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('is-in');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.16, rootMargin: '0px 0px -8% 0px' });
+    revealEls.forEach(el => io.observe(el));
+  } else {
+    revealEls.forEach(el => el.classList.add('is-in'));
+  }
+</script>
+</body>
+</html>
