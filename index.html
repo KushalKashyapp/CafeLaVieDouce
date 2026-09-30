@@ -63,14 +63,43 @@ body{margin:0;background:var(--bg);color:var(--text);font-family:"Bricolage Grot
 .menu-btn svg{width:24px;height:24px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round}
 a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
-/* Mobile */
+/* Phone only — laptop styles above are unchanged */
 @media (max-width:760px){
+  html{scroll-padding-top:calc(56px + env(safe-area-inset-top,0px))}
   .menu-btn{display:grid;place-items:center}
-  .nav-inner{flex-wrap:wrap;height:auto;min-height:64px;padding-top:12px;padding-bottom:12px}
-  .brand{line-height:40px}
+  .nav{top:0;padding-top:env(safe-area-inset-top,0px)}
+  .nav-inner{flex-wrap:wrap;height:auto;min-height:56px;gap:10px;padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px))}
+  .logo{width:34px;height:34px;flex-shrink:0}
+  .brand{flex:1;min-width:0;font-size:1.02rem;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .links,.social{display:none;width:100%;margin:0}
-  .nav.open .links{display:flex;flex-direction:column;gap:2px}
-  .nav.open .social{display:flex;justify-content:flex-start;padding-top:8px;border-top:1px solid var(--line)}
+  .nav.open .links{display:flex;flex-direction:column;gap:4px;padding:8px 0 4px}
+  .nav.open .links a{padding:12px 14px}
+  .nav.open .social{display:flex;justify-content:flex-start;align-items:center;gap:10px;padding:12px 4px 4px;border-top:1px solid var(--line)}
+  .social img{height:36px !important;width:36px !important;margin-top:0 !important}
+
+  section{padding:32px 18px}
+  #home{padding-top:28px;padding-bottom:28px}
+  #home::before,#home::after{display:none}
+  h1{font-size:clamp(1.85rem,8vw,2.35rem);margin-bottom:12px}
+  h2{font-size:clamp(1.45rem,6vw,1.9rem)}
+  p{font-size:1rem;max-width:none}
+  .disclaimer{display:block;font-size:.72rem;font-weight:600;line-height:1.45;letter-spacing:.01em;color:color-mix(in srgb,var(--muted) 78%,var(--text));text-transform:none}
+  .btn{display:flex;justify-content:center;width:100%;box-sizing:border-box;margin-top:18px;padding:14px 22px}
+  .band{height:clamp(180px,38vh,280px)}
+
+  .book-stage{padding:16px 0 12px}
+  .book{height:auto;width:100%;max-width:none;aspect-ratio:var(--book-ratio)}
+  .book-controls{gap:10px;padding:0 4px}
+  .book-controls button{width:48px;height:48px}
+  .book-label{min-width:0;flex:1;font-size:.9rem}
+
+  .section-tag{font-size:.72rem;margin-bottom:8px}
+  .location-details:hover p{transform:none}
+  .direction-btn{display:flex;justify-content:center;width:100%;box-sizing:border-box;padding:14px 18px;margin:14px 0 18px}
+  .map-container{border-radius:12px}
+  .map-container iframe{height:240px !important}
+
+  .reveal{transform:translateY(20px)}
 }
 
 /* Sections */
@@ -166,7 +195,7 @@ p{max-width:60ch;color:var(--muted);font-size:1.1rem}
 <main>
   <section id="home">
     <h1>Welcome to a Greek Bohemian Paradise!</h1>
-    <p> <b>DISCLAIMER: THIS WEBSITE IS AN INDEPENDENT REDESIGN CONCEPT CREATED FOR PORTFOLIO AND EDUCATIONAL PURPOSES. LA VIE DOUCE'S BRANDING, CONTENT, AND IMAGERY BELONG TO THEIR RESPECTIVE OWNERS. THIS PROJECT IS NOT AFFILIATED WITH, ENDORSED BY, OR COMMISSIONED BY LA VIE DOUCE. </b> <br><br> A European-inspired café and bakery where specialty coffee, artisanal bakes, comforting brunches, and slow conversations come together. Step away from the rush and savor moments crafted with warmth, flavor, and timeless charm.</p>
+    <p> <b class="disclaimer">DISCLAIMER: THIS WEBSITE IS AN INDEPENDENT REDESIGN CONCEPT CREATED FOR PORTFOLIO AND EDUCATIONAL PURPOSES. LA VIE DOUCE'S BRANDING, CONTENT, AND IMAGERY BELONG TO THEIR RESPECTIVE OWNERS. THIS PROJECT IS NOT AFFILIATED WITH, ENDORSED BY, OR COMMISSIONED BY LA VIE DOUCE. </b> <br><br> A European-inspired café and bakery where specialty coffee, artisanal bakes, comforting brunches, and slow conversations come together. Step away from the rush and savor moments crafted with warmth, flavor, and timeless charm.</p>
     <a class="btn" href="#location">Find us</a>
   </section>
 
